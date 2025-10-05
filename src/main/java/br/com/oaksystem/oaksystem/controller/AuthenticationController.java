@@ -4,6 +4,7 @@ import br.com.oaksystem.oaksystem.dto.AuthenticationRequestDTO;
 import br.com.oaksystem.oaksystem.dto.AuthenticationResponseDTO;
 import br.com.oaksystem.oaksystem.dto.RegisterRequestDTO;
 import br.com.oaksystem.oaksystem.service.AuthenticationService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +22,13 @@ public class AuthenticationController {
     private final AuthenticationService service;
 
     @PostMapping("/register")
+    @SecurityRequirements({})
     public ResponseEntity<AuthenticationResponseDTO> register(@RequestBody RegisterRequestDTO request) {
         return ResponseEntity.ok(service.register(request));
     }
 
     @PostMapping("/login")
+    @SecurityRequirements({})
     public ResponseEntity<AuthenticationResponseDTO> authenticate(@RequestBody AuthenticationRequestDTO request) {
         return ResponseEntity.ok(service.authenticate(request));
     }
