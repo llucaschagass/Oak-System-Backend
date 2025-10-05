@@ -2,6 +2,8 @@ package br.com.oaksystem.oaksystem.controller;
 
 import br.com.oaksystem.oaksystem.model.Categoria;
 import br.com.oaksystem.oaksystem.service.CategoriaService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/categorias")
+@Tag(name = "Categorias", description = "Endpoints para gerenciar categorias de produtos")
 public class CategoriaController {
 
     @Autowired
