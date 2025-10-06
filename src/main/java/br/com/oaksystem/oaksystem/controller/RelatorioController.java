@@ -1,6 +1,9 @@
 package br.com.oaksystem.oaksystem.controller;
 
 import br.com.oaksystem.oaksystem.dto.ListaPrecoDTO;
+import br.com.oaksystem.oaksystem.dto.BalancoGeralDTO;
+import br.com.oaksystem.oaksystem.dto.ProdutoAbaixoMinimoDTO;
+
 import br.com.oaksystem.oaksystem.service.RelatorioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +24,15 @@ public class RelatorioController {
     @GetMapping("/lista-de-precos")
     public List<ListaPrecoDTO> getListaDePrecos() {
         return relatorioService.gerarListaDePrecos();
+    }
+
+    @GetMapping("/balanco-financeiro")
+    public BalancoGeralDTO getBalancoFinanceiro() {
+        return relatorioService.gerarBalancoFisicoFinanceiro();
+    }
+
+    @GetMapping("/produtos-abaixo-minimo")
+    public List<ProdutoAbaixoMinimoDTO> getProdutosAbaixoMinimo() {
+        return relatorioService.gerarRelatorioProdutosAbaixoMinimo();
     }
 }
