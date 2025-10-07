@@ -3,6 +3,7 @@ package br.com.oaksystem.oaksystem.repository;
 import br.com.oaksystem.oaksystem.dto.ListaPrecoDTO;
 import br.com.oaksystem.oaksystem.dto.BalancoItemDTO;
 import br.com.oaksystem.oaksystem.dto.ProdutoAbaixoMinimoDTO;
+import br.com.oaksystem.oaksystem.dto.ProdutosPorCategoriaDTO;
 
 import br.com.oaksystem.oaksystem.model.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,4 +26,10 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
            "WHERE p.quantidadeEmEstoque < p.quantidadeMinima " +
            "ORDER BY p.nome ASC")
     List<ProdutoAbaixoMinimoDTO> findProdutosAbaixoDoMinimo();
+
+    @Query("SELECT new br.com.oaksystem.oaksystem.dto.ProdutosPorCategoriaDTO(p.categoria.nome, COUNT(p.id)) " +
+           "FROM Produto p " +
+           "GROUP BY p.categoria.nome " +
+           "ORDER BY p.categoria.nome ASC")
+    List<ProdutosPorCategoriaDTO> countProdutosByCategoria();
 }

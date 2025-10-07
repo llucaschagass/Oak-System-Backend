@@ -3,6 +3,8 @@ package br.com.oaksystem.oaksystem.controller;
 import br.com.oaksystem.oaksystem.dto.ListaPrecoDTO;
 import br.com.oaksystem.oaksystem.dto.BalancoGeralDTO;
 import br.com.oaksystem.oaksystem.dto.ProdutoAbaixoMinimoDTO;
+import br.com.oaksystem.oaksystem.dto.ProdutosPorCategoriaDTO;
+import br.com.oaksystem.oaksystem.dto.RelatorioMovimentacaoDTO;
 
 import br.com.oaksystem.oaksystem.service.RelatorioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -34,5 +36,15 @@ public class RelatorioController {
     @GetMapping("/produtos-abaixo-minimo")
     public List<ProdutoAbaixoMinimoDTO> getProdutosAbaixoMinimo() {
         return relatorioService.gerarRelatorioProdutosAbaixoMinimo();
+    }
+
+    @GetMapping("/produtos-por-categoria")
+    public List<ProdutosPorCategoriaDTO> getProdutosPorCategoria() {
+        return relatorioService.gerarRelatorioProdutosPorCategoria();
+    }
+
+    @GetMapping("/maiores-movimentacoes")
+    public RelatorioMovimentacaoDTO getMaioresMovimentacoes() {
+        return relatorioService.gerarRelatorioMaioresMovimentacoes();
     }
 }
